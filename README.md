@@ -1,6 +1,6 @@
-# F1 Classement
+# F1 Arena
 
-**F1 Classement** est un projet de gestion et de simulation d'un championnat de Formule 1. Il permet de modéliser les pilotes, les écuries, les Grands Prix et les classements des championnats pilotes et constructeurs.
+**F1 Arena** est un projet de gestion et de simulation d'un championnat de Formule 1. Il permet de modéliser les pilotes, les écuries, les Grands Prix et les classements des championnats pilotes et constructeurs.
 
 Le projet repose actuellement sur un prototype algorithmique développé en Python. Ce prototype sert à définir, tester et clarifier les règles métier avant leur intégration dans une application web utilisant HTML, CSS, JavaScript et une base de données.
 
@@ -203,4 +203,4 @@ Aucune licence spécifique n'est définie dans le prototype fourni. Une licence 
 
 ---
 
-**F1 Classement —** un moteur de championnat de Formule 1 conçu pour évoluer d'un prototype Python vers une application web complète.
+**F1 Arena —** un moteur de championnat de Formule 1 conçu pour évoluer d'un prototype Python vers une application web complète.
