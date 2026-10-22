@@ -1,3 +1,8 @@
+# Ce code python est un simple code qui sert a expliquer l'algoritme de façon plus claire en python pour,
+# le vrais logiciel qui sera en html css javascript avec une bdd.
+
+# Le code est pour la plus par avec de nom Anglais car l'outil finale sera en Anglais,
+# mais les anotation son en Francais pour la compréhention.
 
 class Driver:
     """Représente un pilote de Formule 1."""
