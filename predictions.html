@@ -1,2 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#070707"><title>Predictions | F1 Arena</title><link rel="stylesheet" href="css/style.css"></head><body data-page="predictions"><header class="topbar"><div class="container nav"><a class="brand" href="index.html"><img src="assets/logo-transparent.png" alt="F1 Arena"></a><nav class="navlinks"><a data-page="home" href="index.html">Home</a><a data-page="calendar" href="calendar.html">Calendar</a><a data-page="standings" href="standings.html">Standings</a><a data-page="drivers" href="drivers.html">Drivers</a><a data-page="teams" href="teams.html">Teams</a><a data-page="predictions" href="predictions.html">Predictions</a></nav><a class="btn small" href="predictions.html">Make a prediction</a><button class="menu-toggle" aria-label="Open menu">☰</button></div></header>
-<main><section class="page-hero"><div class="container"><div class="eyebrow">Your race. Your call.</div><h1 class="page-title">Make your picks<span style="color:var(--red)">.</span></h1><p>Build your race-weekend predictions and save your picks on this device.</p></div></section><section class="section"><div class="container"><div class="grid two"><div class="panel"><div class="eyebrow">Round 04 · Bahrain</div><h2 class="panel-title" style="margin-top:8px">Race predictions</h2><p class="muted">Choose your winner, podium and key race outcomes.</p><div class="notice">Prototype mode: predictions are stored in this browser only. The MySQL database is not connected in this static version.</div><form id="prediction-form" class="prediction-form"></form><div class="actions"><button form="prediction-form" type="submit">Save predictions ↗</button></div><p id="prediction-message" class="muted" hidden style="margin-top:16px"></p></div><div class="panel"><div class="eyebrow">How it works</div><h2 class="panel-title" style="margin-top:8px">Play the weekend</h2><div style="margin-top:25px"><div class="calendar-row"><div class="calendar-round">01</div><div><h3>Pick your podium</h3><p>Choose the top three finishers.</p></div></div><div class="calendar-row"><div class="calendar-round">02</div><div><h3>Call the details</h3><p>Predict pole, fastest lap and top constructor.</p></div></div><div class="calendar-row"><div class="calendar-round">03</div><div><h3>Score your points</h3><p>A future backend can compare picks with race results and update community rankings.</p></div></div></div><a class="btn secondary" href="standings.html" style="margin-top:22px">View standings</a></div></div></div></section></main><footer class="footer"><div class="container footer-inner"><span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span><span>Unofficial fan project · Demo data for interface preview</span></div></footer><script src="js/data.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070707">
+    <title>Predictions | F1 Arena</title>
+    <meta name="description" content="Create and save your F1 Arena race weekend predictions.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="predictions">
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" href="index.html" aria-label="F1 Arena home">
+                <span class="brand-mark">F1</span>
+                <span class="brand-name">ARENA<span class="brand-dot">.</span></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">☰</button>
+            <nav class="navlinks" id="primary-navigation" aria-label="Main navigation">
+                <a data-page="home" href="index.html">Home</a>
+                <a data-page="calendar" href="calendar.html">Calendar</a>
+                <a data-page="standings" href="standings.html">Standings</a>
+                <a data-page="drivers" href="drivers.html">Drivers</a>
+                <a data-page="teams" href="teams.html">Teams</a>
+                <a data-page="predictions" href="predictions.html">Predictions</a>
+            </nav>
+            <a class="btn small nav-cta" href="predictions.html">Make a prediction <span aria-hidden="true">↗</span></a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero"><div class="container">
+            <p class="eyebrow">Your race. Your call.</p><h1 class="page-title">Make your picks<span class="title-dot">.</span></h1>
+            <p>Build your race-weekend predictions and save your picks on this device.</p>
+        </div></section>
+        <section class="section"><div class="container">
+            <div class="grid two">
+                <section class="panel">
+                    <p class="eyebrow">Round 04 · Bahrain</p><h2 class="panel-title panel-title-spaced">Race predictions</h2>
+                    <p class="muted">Choose your winner, podium and key race outcomes.</p>
+                    <p class="notice">Prototype mode: predictions are stored in this browser only. The MySQL database is not connected.</p>
+                    <form id="prediction-form" class="prediction-form">
+                        <div class="prediction-field"><label for="winner">Race winner</label><select class="field" id="winner" name="winner" required><option value="">Select your pick</option><option>Max Verstappen</option><option>Lando Norris</option><option>Charles Leclerc</option><option>Oscar Piastri</option><option>Carlos Sainz</option><option>Lewis Hamilton</option><option>George Russell</option><option>Fernando Alonso</option><option>Pierre Gasly</option><option>Yuki Tsunoda</option><option>Nico Hulkenberg</option><option>Sergio Perez</option></select></div>
+                        <div class="prediction-field"><label for="podium2">2nd place</label><select class="field" id="podium2" name="podium2" required><option value="">Select your pick</option><option>Max Verstappen</option><option>Lando Norris</option><option>Charles Leclerc</option><option>Oscar Piastri</option><option>Carlos Sainz</option><option>Lewis Hamilton</option><option>George Russell</option><option>Fernando Alonso</option><option>Pierre Gasly</option><option>Yuki Tsunoda</option><option>Nico Hulkenberg</option><option>Sergio Perez</option></select></div>
+                        <div class="prediction-field"><label for="podium3">3rd place</label><select class="field" id="podium3" name="podium3" required><option value="">Select your pick</option><option>Max Verstappen</option><option>Lando Norris</option><option>Charles Leclerc</option><option>Oscar Piastri</option><option>Carlos Sainz</option><option>Lewis Hamilton</option><option>George Russell</option><option>Fernando Alonso</option><option>Pierre Gasly</option><option>Yuki Tsunoda</option><option>Nico Hulkenberg</option><option>Sergio Perez</option></select></div>
+                        <div class="prediction-field"><label for="pole">Pole position</label><select class="field" id="pole" name="pole" required><option value="">Select your pick</option><option>Max Verstappen</option><option>Lando Norris</option><option>Charles Leclerc</option><option>Oscar Piastri</option><option>Carlos Sainz</option><option>Lewis Hamilton</option><option>George Russell</option></select></div>
+                        <div class="prediction-field"><label for="fastest">Fastest lap</label><select class="field" id="fastest" name="fastest" required><option value="">Select your pick</option><option>Max Verstappen</option><option>Lando Norris</option><option>Charles Leclerc</option><option>Oscar Piastri</option><option>Carlos Sainz</option><option>Lewis Hamilton</option><option>George Russell</option></select></div>
+                        <div class="prediction-field"><label for="team">Top constructor</label><select class="field" id="team" name="team" required><option value="">Select your pick</option><option>McLaren</option><option>Ferrari</option><option>Red Bull Racing</option><option>Mercedes</option><option>Aston Martin</option><option>Williams</option><option>RB</option><option>Haas</option><option>Alpine</option><option>Sauber</option></select></div>
+                        <div class="prediction-field"><label for="safety">Safety car?</label><select class="field" id="safety" name="safety" required><option value="">Choose</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+                        <div class="prediction-actions"><button type="submit">Save predictions ↗</button><button class="btn secondary" id="clear-predictions" type="button">Clear picks</button></div>
+                    </form>
+                    <p id="prediction-message" class="muted form-message" role="status" aria-live="polite" hidden></p>
+                </section>
+                <aside class="panel">
+                    <p class="eyebrow">How it works</p><h2 class="panel-title panel-title-spaced">Play the weekend</h2>
+                    <div class="how-step"><span class="step-number">01</span><div><h3>Pick your podium</h3><p>Choose the top three finishers.</p></div></div>
+                    <div class="how-step"><span class="step-number">02</span><div><h3>Call the details</h3><p>Predict pole, fastest lap and top constructor.</p></div></div>
+                    <div class="how-step"><span class="step-number">03</span><div><h3>Score your points</h3><p>A future backend can compare picks with race results and update community rankings.</p></div></div>
+                    <a class="btn secondary" href="standings.html">View standings</a>
+                </aside>
+            </div>
+        </div></section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span>
+            <span>Unofficial fan project · Demonstration data</span>
+        </div>
+    </footer>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

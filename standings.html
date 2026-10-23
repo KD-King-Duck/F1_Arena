@@ -1,2 +1,96 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#070707"><title>Standings | F1 Arena</title><link rel="stylesheet" href="css/style.css"></head><body data-page="standings"><header class="topbar"><div class="container nav"><a class="brand" href="index.html"><img src="assets/logo-transparent.png" alt="F1 Arena"></a><nav class="navlinks"><a data-page="home" href="index.html">Home</a><a data-page="calendar" href="calendar.html">Calendar</a><a data-page="standings" href="standings.html">Standings</a><a data-page="drivers" href="drivers.html">Drivers</a><a data-page="teams" href="teams.html">Teams</a><a data-page="predictions" href="predictions.html">Predictions</a></nav><a class="btn small" href="predictions.html">Make a prediction</a><button class="menu-toggle" aria-label="Open menu">☰</button></div></header>
-<main><section class="page-hero"><div class="container"><div class="eyebrow">2026 season · championship</div><h1 class="page-title">The standings<span style="color:var(--red)">.</span></h1><p>Every position matters. Follow the drivers and constructors across the season.</p></div></section><section class="section"><div class="container"><div class="kpi-grid"><div class="kpi"><span>Driver leader</span><strong>VER</strong><span>Max Verstappen</span></div><div class="kpi"><span>Top constructor</span><strong>MCL</strong><span>McLaren</span></div><div class="kpi"><span>Points on top</span><strong>312</strong><span>Driver championship</span></div><div class="kpi"><span>Race weekends</span><strong>24</strong><span>Season calendar</span></div></div><div class="section-head" style="margin-top:38px"><div><div class="redline"></div><h2>Driver championship</h2></div><input id="driver-search" class="field" placeholder="Search driver or team…" aria-label="Search drivers"></div><div class="panel table-wrap"><table><thead><tr><th>Pos</th><th>Driver</th><th>Constructor</th><th style="text-align:right">Points</th></tr></thead><tbody id="standings-body"></tbody></table></div><div class="section-head" style="margin-top:40px"><div><div class="redline"></div><h2>Constructor championship</h2></div></div><div class="panel table-wrap"><table><thead><tr><th>Pos</th><th>Constructor</th><th>Drivers</th><th style="text-align:right">Points</th></tr></thead><tbody id="team-standings-body"></tbody></table></div><p class="muted" style="font-size:11px;margin-top:14px">Demo values for design preview. Replace with official data or values from your database before publication.</p></div></section></main><footer class="footer"><div class="container footer-inner"><span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span><span>Unofficial fan project · Demo data for interface preview</span></div></footer><script src="js/data.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070707">
+    <title>Standings | F1 Arena</title>
+    <meta name="description" content="Follow the F1 Arena driver and constructor standings.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="standings">
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" href="index.html" aria-label="F1 Arena home">
+                <span class="brand-mark">F1</span>
+                <span class="brand-name">ARENA<span class="brand-dot">.</span></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">☰</button>
+            <nav class="navlinks" id="primary-navigation" aria-label="Main navigation">
+                <a data-page="home" href="index.html">Home</a>
+                <a data-page="calendar" href="calendar.html">Calendar</a>
+                <a data-page="standings" href="standings.html">Standings</a>
+                <a data-page="drivers" href="drivers.html">Drivers</a>
+                <a data-page="teams" href="teams.html">Teams</a>
+                <a data-page="predictions" href="predictions.html">Predictions</a>
+            </nav>
+            <a class="btn small nav-cta" href="predictions.html">Make a prediction <span aria-hidden="true">↗</span></a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero"><div class="container">
+            <p class="eyebrow">2026 season · championship</p><h1 class="page-title">The standings<span class="title-dot">.</span></h1>
+            <p>Every position matters. Follow the drivers and constructors across the season.</p>
+        </div></section>
+        <section class="section"><div class="container">
+            <div class="kpi-grid">
+                <article class="kpi"><span>Driver leader</span><strong>VER</strong><span>Max Verstappen</span></article>
+                <article class="kpi"><span>Top constructor</span><strong>MCL</strong><span>McLaren</span></article>
+                <article class="kpi"><span>Points on top</span><strong>312</strong><span>Driver championship</span></article>
+                <article class="kpi"><span>Race weekends</span><strong>24</strong><span>Season calendar</span></article>
+            </div>
+            <div class="section-head section-head-spaced"><div><div class="redline"></div><h2>Driver championship</h2></div>
+                <label class="visually-hidden" for="driver-search">Search drivers or teams</label><input id="driver-search" class="field" type="search" placeholder="Search driver or team…">
+            </div>
+            <div class="panel table-wrap"><table><thead><tr><th>Pos</th><th>Driver</th><th>Constructor</th><th class="align-right">Points</th></tr></thead>
+                <tbody id="standings-body">
+                    <tr data-search="Max Verstappen Red Bull Racing"><td class="pos top">1</td><td><div class="driver-cell"><span class="driver-avatar">VER</span><strong>Max Verstappen</strong></div></td><td class="muted">Red Bull Racing</td><td class="points">312</td></tr>
+                    <tr data-search="Lando Norris McLaren"><td class="pos top">2</td><td><div class="driver-cell"><span class="driver-avatar">NOR</span><strong>Lando Norris</strong></div></td><td class="muted">McLaren</td><td class="points">289</td></tr>
+                    <tr data-search="Charles Leclerc Ferrari"><td class="pos top">3</td><td><div class="driver-cell"><span class="driver-avatar">LEC</span><strong>Charles Leclerc</strong></div></td><td class="muted">Ferrari</td><td class="points">247</td></tr>
+                    <tr data-search="Oscar Piastri McLaren"><td class="pos">4</td><td><div class="driver-cell"><span class="driver-avatar">PIA</span><strong>Oscar Piastri</strong></div></td><td class="muted">McLaren</td><td class="points">221</td></tr>
+                    <tr data-search="Carlos Sainz Williams"><td class="pos">5</td><td><div class="driver-cell"><span class="driver-avatar">SAI</span><strong>Carlos Sainz</strong></div></td><td class="muted">Williams</td><td class="points">184</td></tr>
+                    <tr data-search="Lewis Hamilton Ferrari"><td class="pos">6</td><td><div class="driver-cell"><span class="driver-avatar">HAM</span><strong>Lewis Hamilton</strong></div></td><td class="muted">Ferrari</td><td class="points">173</td></tr>
+                    <tr data-search="George Russell Mercedes"><td class="pos">7</td><td><div class="driver-cell"><span class="driver-avatar">RUS</span><strong>George Russell</strong></div></td><td class="muted">Mercedes</td><td class="points">159</td></tr>
+                    <tr data-search="Fernando Alonso Aston Martin"><td class="pos">8</td><td><div class="driver-cell"><span class="driver-avatar">ALO</span><strong>Fernando Alonso</strong></div></td><td class="muted">Aston Martin</td><td class="points">91</td></tr>
+                    <tr data-search="Pierre Gasly Alpine"><td class="pos">9</td><td><div class="driver-cell"><span class="driver-avatar">GAS</span><strong>Pierre Gasly</strong></div></td><td class="muted">Alpine</td><td class="points">64</td></tr>
+                    <tr data-search="Yuki Tsunoda RB"><td class="pos">10</td><td><div class="driver-cell"><span class="driver-avatar">TSU</span><strong>Yuki Tsunoda</strong></div></td><td class="muted">RB</td><td class="points">48</td></tr>
+                    <tr data-search="Nico Hulkenberg Haas"><td class="pos">11</td><td><div class="driver-cell"><span class="driver-avatar">HUL</span><strong>Nico Hulkenberg</strong></div></td><td class="muted">Haas</td><td class="points">36</td></tr>
+                    <tr data-search="Sergio Perez Red Bull Racing"><td class="pos">12</td><td><div class="driver-cell"><span class="driver-avatar">PER</span><strong>Sergio Perez</strong></div></td><td class="muted">Red Bull Racing</td><td class="points">32</td></tr>
+                    <tr data-search="Andrea Kimi Antonelli Mercedes"><td class="pos">13</td><td><div class="driver-cell"><span class="driver-avatar">ANT</span><strong>Andrea Kimi Antonelli</strong></div></td><td class="muted">Mercedes</td><td class="points">0</td></tr>
+                    <tr data-search="Lance Stroll Aston Martin"><td class="pos">14</td><td><div class="driver-cell"><span class="driver-avatar">STR</span><strong>Lance Stroll</strong></div></td><td class="muted">Aston Martin</td><td class="points">0</td></tr>
+                    <tr data-search="Alexander Albon Williams"><td class="pos">15</td><td><div class="driver-cell"><span class="driver-avatar">ALB</span><strong>Alexander Albon</strong></div></td><td class="muted">Williams</td><td class="points">0</td></tr>
+                    <tr data-search="Liam Lawson RB"><td class="pos">16</td><td><div class="driver-cell"><span class="driver-avatar">LAW</span><strong>Liam Lawson</strong></div></td><td class="muted">RB</td><td class="points">0</td></tr>
+                    <tr data-search="Oliver Bearman Haas"><td class="pos">17</td><td><div class="driver-cell"><span class="driver-avatar">BEA</span><strong>Oliver Bearman</strong></div></td><td class="muted">Haas</td><td class="points">0</td></tr>
+                    <tr data-search="Franco Colapinto Alpine"><td class="pos">18</td><td><div class="driver-cell"><span class="driver-avatar">COL</span><strong>Franco Colapinto</strong></div></td><td class="muted">Alpine</td><td class="points">0</td></tr>
+                    <tr data-search="Gabriel Bortoleto Sauber"><td class="pos">19</td><td><div class="driver-cell"><span class="driver-avatar">BOR</span><strong>Gabriel Bortoleto</strong></div></td><td class="muted">Sauber</td><td class="points">0</td></tr>
+                    <tr data-search="Valtteri Bottas Cadillac"><td class="pos">20</td><td><div class="driver-cell"><span class="driver-avatar">BOT</span><strong>Valtteri Bottas</strong></div></td><td class="muted">Cadillac</td><td class="points">0</td></tr>
+                </tbody>
+            </table></div>
+            <div class="section-head section-head-spaced"><div><div class="redline"></div><h2>Constructor championship</h2></div></div>
+            <div class="panel table-wrap"><table><thead><tr><th>Pos</th><th>Constructor</th><th>Drivers</th><th class="align-right">Points</th></tr></thead>
+                <tbody id="team-standings-body">
+                    <tr><td class="pos top">1</td><td><span class="team-mark" style="background:#ff8700"></span><strong>McLaren</strong></td><td class="muted">Lando Norris · Oscar Piastri</td><td class="points">510</td></tr>
+                    <tr><td class="pos top">2</td><td><span class="team-mark" style="background:#e8002d"></span><strong>Ferrari</strong></td><td class="muted">Charles Leclerc · Lewis Hamilton</td><td class="points">420</td></tr>
+                    <tr><td class="pos top">3</td><td><span class="team-mark" style="background:#3671c6"></span><strong>Red Bull Racing</strong></td><td class="muted">Max Verstappen · Sergio Perez</td><td class="points">344</td></tr>
+                    <tr><td class="pos">4</td><td><span class="team-mark" style="background:#27f4d2"></span><strong>Mercedes</strong></td><td class="muted">George Russell · Andrea Kimi Antonelli</td><td class="points">260</td></tr>
+                    <tr><td class="pos">5</td><td><span class="team-mark" style="background:#229971"></span><strong>Aston Martin</strong></td><td class="muted">Fernando Alonso · Lance Stroll</td><td class="points">112</td></tr>
+                    <tr><td class="pos">6</td><td><span class="team-mark" style="background:#64c4ff"></span><strong>Williams</strong></td><td class="muted">Carlos Sainz · Alexander Albon</td><td class="points">95</td></tr>
+                    <tr><td class="pos">7</td><td><span class="team-mark" style="background:#6692ff"></span><strong>RB</strong></td><td class="muted">Yuki Tsunoda · Liam Lawson</td><td class="points">72</td></tr>
+                    <tr><td class="pos">8</td><td><span class="team-mark" style="background:#b6babd"></span><strong>Haas</strong></td><td class="muted">Nico Hulkenberg · Oliver Bearman</td><td class="points">58</td></tr>
+                    <tr><td class="pos">9</td><td><span class="team-mark" style="background:#0093cc"></span><strong>Alpine</strong></td><td class="muted">Pierre Gasly · Franco Colapinto</td><td class="points">51</td></tr>
+                    <tr><td class="pos">10</td><td><span class="team-mark" style="background:#52e252"></span><strong>Sauber</strong></td><td class="muted">Gabriel Bortoleto · Nico Hulkenberg</td><td class="points">12</td></tr>
+                </tbody>
+            </table></div>
+            <p class="data-note">Demo values for design preview. Replace them with verified data or database values before publication.</p>
+        </div></section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span>
+            <span>Unofficial fan project · Demonstration data</span>
+        </div>
+    </footer>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

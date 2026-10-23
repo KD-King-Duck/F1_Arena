@@ -1,2 +1,64 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#070707"><title>Calendar | F1 Arena</title><link rel="stylesheet" href="css/style.css"></head><body data-page="calendar"><header class="topbar"><div class="container nav"><a class="brand" href="index.html"><img src="assets/logo-transparent.png" alt="F1 Arena"></a><nav class="navlinks"><a data-page="home" href="index.html">Home</a><a data-page="calendar" href="calendar.html">Calendar</a><a data-page="standings" href="standings.html">Standings</a><a data-page="drivers" href="drivers.html">Drivers</a><a data-page="teams" href="teams.html">Teams</a><a data-page="predictions" href="predictions.html">Predictions</a></nav><a class="btn small" href="predictions.html">Make a prediction</a><button class="menu-toggle" aria-label="Open menu">☰</button></div></header>
-<main><section class="page-hero"><div class="container"><div class="eyebrow">Lights out, season on</div><h1 class="page-title">Race calendar<span style="color:var(--red)">.</span></h1><p>Plan your race weekends. Check the schedule and find the next Grand Prix.</p></div></section><section class="section"><div class="container"><div class="section-head"><div><div class="redline"></div><h2>Race weekends</h2></div><select id="race-filter" class="field" aria-label="Filter races"><option value="all">All races</option><option value="upcoming">Upcoming</option><option value="completed">Completed</option></select></div><div class="panel" id="calendar-list"></div><div class="notice">Calendar entries are illustrative demo data. Dates and race status should be verified before using this site as a live schedule.</div></div></section></main><footer class="footer"><div class="container footer-inner"><span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span><span>Unofficial fan project · Demo data for interface preview</span></div></footer><script src="js/data.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070707">
+    <title>Calendar | F1 Arena</title>
+    <meta name="description" content="Explore the F1 Arena race calendar.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="calendar">
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" href="index.html" aria-label="F1 Arena home">
+                <span class="brand-mark">F1</span>
+                <span class="brand-name">ARENA<span class="brand-dot">.</span></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">☰</button>
+            <nav class="navlinks" id="primary-navigation" aria-label="Main navigation">
+                <a data-page="home" href="index.html">Home</a>
+                <a data-page="calendar" href="calendar.html">Calendar</a>
+                <a data-page="standings" href="standings.html">Standings</a>
+                <a data-page="drivers" href="drivers.html">Drivers</a>
+                <a data-page="teams" href="teams.html">Teams</a>
+                <a data-page="predictions" href="predictions.html">Predictions</a>
+            </nav>
+            <a class="btn small nav-cta" href="predictions.html">Make a prediction <span aria-hidden="true">↗</span></a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero"><div class="container">
+            <p class="eyebrow">Lights out, season on</p><h1 class="page-title">Race calendar<span class="title-dot">.</span></h1>
+            <p>Plan your race weekends. Check the schedule and find the next Grand Prix.</p>
+        </div></section>
+        <section class="section"><div class="container">
+            <div class="section-head">
+                <div><div class="redline"></div><h2>Race weekends</h2></div>
+                <label class="visually-hidden" for="race-filter">Filter races</label>
+                <select id="race-filter" class="field"><option value="all">All races</option><option value="upcoming">Upcoming</option><option value="completed">Completed</option></select>
+            </div>
+            <div class="panel calendar-list" id="calendar-list">
+                <article class="calendar-row" data-status="completed"><div class="calendar-round">01</div><div><h3>Australian Grand Prix</h3><p>Melbourne, Australia · 06–08 MAR</p></div><span class="tag">Grand Prix · Completed</span></article>
+                <article class="calendar-row" data-status="completed"><div class="calendar-round">02</div><div><h3>Chinese Grand Prix</h3><p>Shanghai, China · 13–15 MAR</p></div><span class="tag">Sprint · Completed</span></article>
+                <article class="calendar-row" data-status="completed"><div class="calendar-round">03</div><div><h3>Japanese Grand Prix</h3><p>Suzuka, Japan · 27–29 MAR</p></div><span class="tag">Grand Prix · Completed</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">04</div><div><h3>Bahrain Grand Prix</h3><p>Sakhir, Bahrain · 10–12 APR</p></div><span class="tag">Grand Prix · Upcoming</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">05</div><div><h3>Saudi Arabian Grand Prix</h3><p>Jeddah, Saudi Arabia · 17–19 APR</p></div><span class="tag">Grand Prix · Upcoming</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">06</div><div><h3>Miami Grand Prix</h3><p>Miami, United States · 01–03 MAY</p></div><span class="tag">Sprint · Upcoming</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">07</div><div><h3>Monaco Grand Prix</h3><p>Monte Carlo, Monaco · 22–24 MAY</p></div><span class="tag">Grand Prix · Upcoming</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">08</div><div><h3>Spanish Grand Prix</h3><p>Barcelona, Spain · 12–14 JUN</p></div><span class="tag">Grand Prix · Upcoming</span></article>
+                <article class="calendar-row" data-status="upcoming"><div class="calendar-round">09</div><div><h3>British Grand Prix</h3><p>Silverstone, United Kingdom · 03–05 JUL</p></div><span class="tag">Grand Prix · Upcoming</span></article>
+            </div>
+            <p class="notice">Calendar entries are illustrative demo data. Verify dates and race status before using this site as a live schedule.</p>
+        </div></section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span>
+            <span>Unofficial fan project · Demonstration data</span>
+        </div>
+    </footer>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

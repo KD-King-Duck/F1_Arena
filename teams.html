@@ -1,2 +1,111 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#070707"><title>Teams | F1 Arena</title><link rel="stylesheet" href="css/style.css"></head><body data-page="teams"><header class="topbar"><div class="container nav"><a class="brand" href="index.html"><img src="assets/logo-transparent.png" alt="F1 Arena"></a><nav class="navlinks"><a data-page="home" href="index.html">Home</a><a data-page="calendar" href="calendar.html">Calendar</a><a data-page="standings" href="standings.html">Standings</a><a data-page="drivers" href="drivers.html">Drivers</a><a data-page="teams" href="teams.html">Teams</a><a data-page="predictions" href="predictions.html">Predictions</a></nav><a class="btn small" href="predictions.html">Make a prediction</a><button class="menu-toggle" aria-label="Open menu">☰</button></div></header>
-<main><section class="page-hero"><div class="container"><div class="eyebrow">The constructors</div><h1 class="page-title">Built to race<span style="color:var(--red)">.</span></h1><p>Two drivers, one garage, one constructors' championship.</p></div></section><section class="section"><div class="container"><div class="section-head"><div><div class="redline"></div><h2>The paddock</h2><p>Constructor points and current driver pairings.</p></div></div><div id="teams-grid" class="team-grid"></div></div></section></main><footer class="footer"><div class="container footer-inner"><span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span><span>Unofficial fan project · Demo data for interface preview</span></div></footer><script src="js/data.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070707">
+    <title>Teams | F1 Arena</title>
+    <meta name="description" content="Explore F1 Arena constructor teams and driver pairings.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="teams">
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" href="index.html" aria-label="F1 Arena home">
+                <span class="brand-mark">F1</span>
+                <span class="brand-name">ARENA<span class="brand-dot">.</span></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">☰</button>
+            <nav class="navlinks" id="primary-navigation" aria-label="Main navigation">
+                <a data-page="home" href="index.html">Home</a>
+                <a data-page="calendar" href="calendar.html">Calendar</a>
+                <a data-page="standings" href="standings.html">Standings</a>
+                <a data-page="drivers" href="drivers.html">Drivers</a>
+                <a data-page="teams" href="teams.html">Teams</a>
+                <a data-page="predictions" href="predictions.html">Predictions</a>
+            </nav>
+            <a class="btn small nav-cta" href="predictions.html">Make a prediction <span aria-hidden="true">↗</span></a>
+        </div>
+    </header>
+    <main>
+        <section class="page-hero"><div class="container">
+            <p class="eyebrow">The constructors</p><h1 class="page-title">Built to race<span class="title-dot">.</span></h1>
+            <p>Two drivers, one garage, one constructors' championship.</p>
+        </div></section>
+        <section class="section"><div class="container">
+            <div class="section-head"><div><div class="redline"></div><h2>The paddock</h2><p>Constructor points and current driver pairings.</p></div></div>
+            <div id="teams-grid" class="team-grid">
+                <article class="card team-card" style="--team-color:#ff8700">
+                    <p class="eyebrow">MCL / CONSTRUCTOR</p><h3>McLaren</h3>
+                    <div class="team-drivers"><span class="pill">Lando Norris</span><span class="pill">Oscar Piastri</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>510</strong></div>
+                    <div class="bar"><span style="width:100.0%;background:#ff8700"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#e8002d">
+                    <p class="eyebrow">FER / CONSTRUCTOR</p><h3>Ferrari</h3>
+                    <div class="team-drivers"><span class="pill">Charles Leclerc</span><span class="pill">Lewis Hamilton</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>420</strong></div>
+                    <div class="bar"><span style="width:82.4%;background:#e8002d"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#3671c6">
+                    <p class="eyebrow">RBR / CONSTRUCTOR</p><h3>Red Bull Racing</h3>
+                    <div class="team-drivers"><span class="pill">Max Verstappen</span><span class="pill">Sergio Perez</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>344</strong></div>
+                    <div class="bar"><span style="width:67.5%;background:#3671c6"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#27f4d2">
+                    <p class="eyebrow">MER / CONSTRUCTOR</p><h3>Mercedes</h3>
+                    <div class="team-drivers"><span class="pill">George Russell</span><span class="pill">Andrea Kimi Antonelli</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>260</strong></div>
+                    <div class="bar"><span style="width:51.0%;background:#27f4d2"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#229971">
+                    <p class="eyebrow">AMR / CONSTRUCTOR</p><h3>Aston Martin</h3>
+                    <div class="team-drivers"><span class="pill">Fernando Alonso</span><span class="pill">Lance Stroll</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>112</strong></div>
+                    <div class="bar"><span style="width:22.0%;background:#229971"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#64c4ff">
+                    <p class="eyebrow">WIL / CONSTRUCTOR</p><h3>Williams</h3>
+                    <div class="team-drivers"><span class="pill">Carlos Sainz</span><span class="pill">Alexander Albon</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>95</strong></div>
+                    <div class="bar"><span style="width:18.6%;background:#64c4ff"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#6692ff">
+                    <p class="eyebrow">RB / CONSTRUCTOR</p><h3>RB</h3>
+                    <div class="team-drivers"><span class="pill">Yuki Tsunoda</span><span class="pill">Liam Lawson</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>72</strong></div>
+                    <div class="bar"><span style="width:14.1%;background:#6692ff"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#b6babd">
+                    <p class="eyebrow">HAA / CONSTRUCTOR</p><h3>Haas</h3>
+                    <div class="team-drivers"><span class="pill">Nico Hulkenberg</span><span class="pill">Oliver Bearman</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>58</strong></div>
+                    <div class="bar"><span style="width:11.4%;background:#b6babd"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#0093cc">
+                    <p class="eyebrow">ALP / CONSTRUCTOR</p><h3>Alpine</h3>
+                    <div class="team-drivers"><span class="pill">Pierre Gasly</span><span class="pill">Franco Colapinto</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>51</strong></div>
+                    <div class="bar"><span style="width:10.0%;background:#0093cc"></span></div>
+                </article>
+                <article class="card team-card" style="--team-color:#52e252">
+                    <p class="eyebrow">SAU / CONSTRUCTOR</p><h3>Sauber</h3>
+                    <div class="team-drivers"><span class="pill">Gabriel Bortoleto</span><span class="pill">Nico Hulkenberg</span></div>
+                    <div class="driver-meta"><span class="muted">CONSTRUCTOR POINTS</span><strong>12</strong></div>
+                    <div class="bar"><span style="width:4.0%;background:#52e252"></span></div>
+                </article>
+            </div>
+            <p class="data-note">Teams, points and driver pairings are sample interface data.</p>
+        </div></section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span><strong>F1 ARENA</strong> — PREDICT · COMPETE · LIVE F1</span>
+            <span>Unofficial fan project · Demonstration data</span>
+        </div>
+    </footer>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
