@@ -1,0 +1,4 @@
+boot(d=>{const c=compute(d);let tab='drivers';const el=$('#tbl'),isD=()=>tab=='drivers';
+const draw=()=>{const rows=c[tab];el.innerHTML=rows.length?`<table><thead><tr><th>#</th><th>${isD()?'Pilote':'Écurie'}</th>${isD()?'<th>Écurie</th>':''}<th>Victoires</th><th>Podiums</th><th>Points</th></tr></thead><tbody>`+rows.map((x,i)=>{const t=isD()?d.teams.find(t=>t.id==x.team_id):x;
+return `<tr class="r${i+1}"><td>${i+1}</td><td><em class="dot" style="background:${esc(t?.color||'#555')}"></em>${isD()&&x.number!=null?`<small>#${esc(x.number)}</small> `:''}${esc(x.name)}</td>${isD()?`<td>${t?esc(t.name):'—'}</td>`:''}<td>${x.wins}</td><td>${x.podiums}</td><td><b>${x.pts}</b></td></tr>`}).join('')+'</tbody></table>':'<p class="empty">Rien à classer. Crée des pilotes et saisis des résultats.</p>'};
+$$('.tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;$$('.tabs button').forEach(x=>x.classList.toggle('on',x==b));draw()});draw()});
