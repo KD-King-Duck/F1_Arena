@@ -1,104 +1,14 @@
 <?php
-require 'config.php';
-
-header('Content-Type: application/json');
-
-$T = [
-    'seasons' => ['name'],
-    'teams' => ['name', 'color'],
-    'drivers' => ['name', 'number', 'team_id'],
-    'races' => ['season_id', 'name', 'circuit', 'race_date', 'has_sprint'],
-];
-$p = null;
-
+require 'config.php'; header('Content-Type: application/json');
+$T=['championships'=>['name'],'seasons'=>['championship_id','name'],'teams'=>['championship_id','name','color'],'drivers'=>['championship_id','name'],'season_teams'=>['season_id','team_id'],'season_drivers'=>['season_id','driver_id','team_id','number'],'races'=>['season_id','name','circuit','race_date','has_sprint']];
 try {
-    $p = db();
-    $m = $_SERVER['REQUEST_METHOD'];
-    $t = $_GET['t'] ?? '';
-
-    if ($m == 'GET') {
-        $o = [];
-
-        foreach (['seasons', 'teams', 'drivers', 'races', 'results', 'scoring'] as $x) {
-            $o[$x] = $p->query("SELECT * FROM $x ORDER BY 1")->fetchAll();
-        }
-
-        echo json_encode($o);
-        exit;
-    }
-
-    if ($m == 'DELETE') {
-        if (!isset($T[$t])) {
-            throw new Exception('Table inconnue');
-        }
-
-        $p->prepare("DELETE FROM $t WHERE id=?")->execute([$_GET['id']]);
-        echo '{"ok":1}';
-        exit;
-    }
-
-    $b = json_decode(file_get_contents('php://input'), true);
-    $t = $b['t'] ?? '';
-
-    if ($t == 'results') {
-        $p->beginTransaction();
-        $p->prepare("DELETE FROM results WHERE race_id=? AND kind=?")->execute([$b['race_id'], $b['kind']]);
-        $s = $p->prepare("INSERT INTO results(race_id,kind,position,driver_id,team_id) VALUES(?,?,?,?,?)");
-
-        foreach ($b['rows'] as $r) {
-            $s->execute([$b['race_id'], $b['kind'], $r['position'], $r['driver_id'], $r['team_id'] ?: null]);
-        }
-
-        $p->commit();
-        echo '{"ok":1}';
-        exit;
-    }
-
-    if ($t == 'scoring') {
-        $p->beginTransaction();
-        $p->exec("DELETE FROM scoring");
-        $s = $p->prepare("INSERT INTO scoring(kind,position,points) VALUES(?,?,?)");
-
-        foreach ($b['rows'] as $r) {
-            $s->execute([$r['kind'], $r['position'], $r['points']]);
-        }
-
-        $p->commit();
-        echo '{"ok":1}';
-        exit;
-    }
-
-    if (!isset($T[$t])) {
-        throw new Exception('Table inconnue');
-    }
-
-    $d = [];
-
-    foreach ($T[$t] as $c) {
-        if (array_key_exists($c, $b['data'])) {
-            $d[$c] = $b['data'][$c];
-        }
-    }
-
-    if (!empty($b['id'])) {
-        $set = implode(',', array_map(fn($c) => "$c=?", array_keys($d)));
-        $p->prepare("UPDATE $t SET $set WHERE id=?")->execute([...array_values($d), $b['id']]);
-    } else {
-        $columns = implode(',', array_keys($d));
-        $placeholders = implode(',', array_fill(0, count($d), '?'));
-        $p->prepare("INSERT INTO $t($columns) VALUES($placeholders)")->execute(array_values($d));
-    }
-
-    echo '{"ok":1}';
-} catch (Throwable $e) {
-    if ($p && $p->inTransaction()) {
-        $p->rollBack();
-    }
-
-    http_response_code(500);
-    echo json_encode([
-        'error' => $e->getCode() == '23000'
-            ? 'Valeur déjà utilisée ou donnée liée (doublon)'
-            : $e->getMessage(),
-    ]);
-}
+ $p=db(); $m=$_SERVER['REQUEST_METHOD']; $t=$_GET['t']??'';
+ if($m==='GET'){ $o=[]; foreach(['championships','seasons','teams','drivers','season_teams','season_drivers','races','results','fastest_laps','scoring'] as $x)$o[$x]=$p->query("SELECT * FROM $x ORDER BY 1")->fetchAll(); echo json_encode($o); exit; }
+ if($m==='DELETE'){if(!isset($T[$t]))throw new Exception('Table inconnue');$p->prepare("DELETE FROM $t WHERE id=?")->execute([$_GET['id']]);echo '{"ok":1}';exit;}
+ $b=json_decode(file_get_contents('php://input'),true);$t=$b['t']??'';
+ if($t==='championships'&&empty($b['id'])){$p->beginTransaction();$p->prepare('INSERT INTO championships(name) VALUES(?)')->execute([$b['data']['name']]);$id=$p->lastInsertId();$s=$p->prepare('INSERT INTO scoring(championship_id,kind,position,points) VALUES(?,?,?,?)');foreach([[1,25],[2,18],[3,15],[4,12],[5,10],[6,8],[7,6],[8,4],[9,2],[10,1]] as $r)$s->execute([$id,'gp',$r[0],$r[1]]);foreach([[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1]] as $r)$s->execute([$id,'sprint',$r[0],$r[1]]);$p->commit();echo json_encode(['ok'=>1,'id'=>$id]);exit;}
+ if($t==='results'){$p->beginTransaction();$p->prepare('DELETE FROM results WHERE race_id=? AND kind=?')->execute([$b['race_id'],$b['kind']]);$s=$p->prepare('INSERT INTO results(race_id,kind,position,driver_id,team_id) VALUES(?,?,?,?,?)');foreach($b['rows'] as $r)$s->execute([$b['race_id'],$b['kind'],$r['position'],$r['driver_id'],$r['team_id']?:null]);if($b['kind']==='gp'){$p->prepare('DELETE FROM fastest_laps WHERE race_id=?')->execute([$b['race_id']]);if(!empty($b['fastest_driver_id']))$p->prepare('INSERT INTO fastest_laps(race_id,driver_id) VALUES(?,?)')->execute([$b['race_id'],$b['fastest_driver_id']]);}$p->commit();echo '{"ok":1}';exit;}
+ if($t==='scoring'){$p->beginTransaction();$p->prepare('DELETE FROM scoring WHERE championship_id=?')->execute([$b['championship_id']]);$s=$p->prepare('INSERT INTO scoring(championship_id,kind,position,points) VALUES(?,?,?,?)');foreach($b['rows'] as $r)$s->execute([$b['championship_id'],$r['kind'],$r['position'],$r['points']]);$p->commit();echo '{"ok":1}';exit;}
+ if($t==='duplicate_calendar'){$p->beginTransaction();$s=$p->prepare('SELECT name,circuit,race_date,has_sprint FROM races WHERE season_id=? ORDER BY race_date,id');$s->execute([$b['source_season_id']]);$i=$p->prepare('INSERT INTO races(season_id,name,circuit,race_date,has_sprint) VALUES(?,?,?,?,?)');foreach($s->fetchAll() as $r)$i->execute([$b['season_id'],$r['name'],$r['circuit'],$r['race_date'],$r['has_sprint']]);$p->commit();echo '{"ok":1}';exit;}
+ if(!isset($T[$t]))throw new Exception('Table inconnue');$d=[];foreach($T[$t] as $c)if(array_key_exists($c,$b['data']))$d[$c]=$b['data'][$c];if(!empty($b['id'])){$set=implode(',',array_map(fn($c)=>"$c=?",array_keys($d)));$p->prepare("UPDATE $t SET $set WHERE id=?")->execute([...array_values($d),$b['id']]);$id=$b['id'];}else{$cols=implode(',',array_keys($d));$q=implode(',',array_fill(0,count($d),'?'));$p->prepare("INSERT INTO $t($cols) VALUES($q)")->execute(array_values($d));$id=$p->lastInsertId();}echo json_encode(['ok'=>1,'id'=>$id]);
+}catch(Throwable $e){if(isset($p)&&$p->inTransaction())$p->rollBack();http_response_code(500);echo json_encode(['error'=>$e->getCode()==='23000'?'Valeur déjà utilisée ou donnée liée (doublon)':$e->getMessage()]);}

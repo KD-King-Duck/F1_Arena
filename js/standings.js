@@ -1,19 +1,2 @@
-boot(d => {
-  const c = compute(d);
-  let tab = 'drivers';
-  const el = $('#tbl'),
-    isD = () => tab == 'drivers';
-  const draw = () => {
-    const rows = c[tab];
-    el.innerHTML = rows.length ? `<table><thead><tr><th>#</th><th>${isD()?'Pilote':'Écurie'}</th>${isD()?'<th>Écurie</th>':''}<th>Victoires</th><th>Podiums</th><th>Points</th></tr></thead><tbody>` + rows.map((x, i) => {
-      const t = isD() ? d.teams.find(t => t.id == x.team_id) : x;
-      return `<tr class="r${i+1}"><td>${i+1}</td><td><em class="dot" style="background:${esc(t?.color||'#555')}"></em>${isD()&&x.number!=null?`<small>#${esc(x.number)}</small> `:''}${esc(x.name)}</td>${isD()?`<td>${t?esc(t.name):'—'}</td>`:''}<td>${x.wins}</td><td>${x.podiums}</td><td><b>${x.pts}</b></td></tr>`
-    }).join('') + '</tbody></table>' : '<p class="empty">Rien à classer. Crée des pilotes et saisis des résultats.</p>'
-  };
-  $$('.tabs button').forEach(b => b.onclick = () => {
-    tab = b.dataset.t;
-    $$('.tabs button').forEach(x => x.classList.toggle('on', x == b));
-    draw()
-  });
-  draw()
-});
+function titleData(d,c,type){const all=type==='drivers'?c.drivers:c.teams,remaining=c.races.filter(r=>!d.results.some(x=>x.race_id==r.id&&x.kind==='gp')),p=scoreMap(d),max=k=>Math.max(0,...Object.keys(p).filter(x=>x.startsWith(k)).map(x=>p[x])),amount=x=>type==='drivers'?1:Math.max(1,c.seasonDrivers.filter(q=>q.team_id==x.id).length),perRace=(r,x)=>amount(x)*(max('gp')+(r.has_sprint?max('sprint'):0))+(type==='drivers'?1:amount(x)>0?1:0),possible=x=>remaining.reduce((n,r)=>n+perRace(r,x),0),lead=all[0],live=new Set();if(lead)all.forEach(x=>{if(x===lead||x.pts+possible(x)>=lead.pts)live.add(x.id)});let ball='';const next=remaining.sort((a,b)=>a.race_date.localeCompare(b.race_date))[0];if(lead&&next){const later=remaining.filter(r=>r.id!=next);for(let pos=1;pos<=30;pos++){const gain=(p['gp'+pos]||0)+(type==='drivers'&&pos<=10?1:0);const safe=all.slice(1).every(x=>lead.pts+gain>x.pts+later.reduce((n,r)=>n+perRace(r,x),0)+perRace(next,x));if(safe){ball=`${type==='drivers'?'Pilote':'Écurie'} : P${pos} ou mieux au ${esc(next.name)} assure le titre.`;break}}}return{live,ball,remaining:remaining.length}}
+boot(d=>{const season=compute(d),global=globalCompute(d);let tab='drivers';const el=$('#tbl');const draw=()=>{const globalTab=tab.startsWith('global'),type=tab.toLowerCase().includes('driver')?'drivers':'teams',data=(globalTab?global:season)[type],ti=!globalTab?titleData(d,season,type):null;$('#titleInfo').innerHTML=ti?`<p class="title-note">${ti.remaining?`${ti.remaining} GP restant(s). ${ti.ball||'Aucune balle de match calculable pour le prochain GP.'}`:'Saison terminée.'}</p>`:'';el.innerHTML=data.length?`<table><thead><tr><th>#</th><th>${type==='drivers'?'Pilote':'Écurie'}</th>${type==='drivers'&&!globalTab?'<th>Écurie</th>':''}<th>Départs</th><th>Victoires</th><th>Podiums</th><th>MT</th><th>Pos. moy.</th><th>Meilleur</th><th>Points</th></tr></thead><tbody>${data.map((x,i)=>{const t=type==='drivers'?d.teams.find(t=>t.id==x.team_id):x,mark=ti?(ti.live.has(x.id)?'<span title="Toujours en course pour le titre">🏁</span>':'<span title="Éliminé mathématiquement">○</span>'):'';return`<tr class="r${i+1}"><td>${i+1}</td><td><em class="dot" style="background:${esc(t?.color||'#555')}"></em>${type==='drivers'&&x.number!=null?`<small>#${esc(x.number)}</small> `:''}${esc(x.name)} ${mark}</td>${type==='drivers'&&!globalTab?`<td>${t?esc(t.name):'—'}</td>`:''}<td>${x.starts}</td><td>${x.wins}</td><td>${x.podiums}</td><td>${x.fastest}</td><td>${x.avg}</td><td>P${x.best}</td><td><b>${x.pts}</b></td></tr>`}).join('')}</tbody></table>`:'<p class="empty">Rien à classer.</p>'};$$('.tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;$$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));draw()});draw();});

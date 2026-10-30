@@ -4,11 +4,11 @@ Application web de suivi d'un championnat de Formule 1 fictif. Elle permet de g�
 
 ## Fonctionnalités
 
-- Gestion des saisons et des Grands Prix, avec prise en charge des courses sprint.
-- Gestion des écuries (nom et couleur) et des pilotes (numéro et écurie).
-- Saisie des résultats de Grand Prix et de sprint.
+- Gestion de championnats indépendants, contenant leurs saisons et Grands Prix, avec prise en charge des courses sprint.
+- Écuries et pilotes permanents au championnat, avec engagement, numéro et écurie propres à chaque saison.
+- Saisie des résultats de Grand Prix et de sprint, avec meilleur tour (+1 uniquement dans le top 10).
 - Barème de points configurable.
-- Classements pilotes et constructeurs calculés par saison.
+- Classements et statistiques pilotes/constructeurs par saison et cumulés sur le championnat.
 
 ## Technologies
 
@@ -42,9 +42,9 @@ Modifie uniquement `DB_PASS` (et les autres constantes si nécessaire) dans `con
 
 ## Première utilisation
 
-La base initiale contient une saison et le barème F1 standard, mais aucune écurie, aucun pilote, aucun Grand Prix ni résultat.
+La base initiale est volontairement vide : crée un championnat, puis sa première saison.
 
-1. Crée ou renomme une saison dans **Calendrier**.
+1. Crée ou renomme un championnat puis une saison dans **Calendrier**.
 2. Ajoute les Grands Prix.
 3. Ajoute les écuries, puis les pilotes.
 4. Ajuste le barème dans **Résultats** si besoin.
@@ -66,6 +66,8 @@ La base initiale contient une saison et le barème F1 standard, mais aucune écu
 ```
 
 ## Données et réinitialisation
+
+Cette version remplace le modèle de données précédent (saisons isolées) par des championnats et des engagements saisonniers. Pour l’installer sur une ancienne base, supprime d’abord la base `f1_arena`, puis importe ce nouveau fichier SQL.
 
 L'import de `F1_BDD.sql` est prévu pour une base neuve. Ne le relance pas sur une base déjà initialisée : les tables existantes sont conservées et les insertions initiales peuvent échouer car certaines valeurs sont uniques.
 

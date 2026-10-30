@@ -354,6 +354,13 @@ td b{
 section.block{
   margin-top:40px
 }
+.title-note{
+  margin:0 0 16px;
+  padding:10px 14px;
+  border-left:3px solid var(--red);
+  background:#ff180116;
+  color:#ddd
+}
 #toast{
   position:fixed;
   bottom:24px;
