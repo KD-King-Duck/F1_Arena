@@ -1,5 +1,61 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Calendrier – Arena</title><link rel="stylesheet" href="css/style.css"></head>
-<body><header id="nav" class="top"></header>
-<main><h1>Calendrier</h1><form class="panel" id="sf"><label>Nouvelle saison<input name="sn" required maxlength="80" placeholder="Saison 2"></label><button>Créer la saison</button><button type="button" class="ghost" id="delSeason">Supprimer la saison affichée</button></form><form class="panel" id="rf"><input type="hidden" name="rid"><label>Nom du GP<input name="nm" required maxlength="120"></label><label>Circuit<input name="circ" maxlength="120"></label><label>Date<input type="date" name="dt" required></label><label class="row"><input type="checkbox" name="spr"> Course sprint</label><button>Enregistrer le GP</button><button type="reset">Annuler</button></form><div id="list"></div></main>
-<script src="js/common.js"></script><script src="js/calendar.js"></script></body></html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      Calendrier – Arena
+    </title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header id="nav" class="top">
+    </header>
+    <main>
+      <h1>
+        Calendrier
+      </h1>
+      <form class="panel" id="sf">
+        <label>
+          Nouvelle saison
+          <input name="sn" required maxlength="80" placeholder="Saison 2">
+        </label>
+        <button>
+          Créer la saison
+        </button>
+        <button type="button" class="ghost" id="delSeason">
+          Supprimer la saison affichée
+        </button>
+      </form>
+      <form class="panel" id="rf">
+        <input type="hidden" name="rid">
+        <label>
+          Nom du GP
+          <input name="nm" required maxlength="120">
+        </label>
+        <label>
+          Circuit
+          <input name="circ" maxlength="120">
+        </label>
+        <label>
+          Date
+          <input type="date" name="dt" required>
+        </label>
+        <label class="row">
+          <input type="checkbox" name="spr">
+          Course sprint
+        </label>
+        <button>
+          Enregistrer le GP
+        </button>
+        <button type="reset">
+          Annuler
+        </button>
+      </form>
+      <div id="list">
+      </div>
+    </main>
+    <script src="js/common.js"></script>
+    <script src="js/calendar.js"></script>
+  </body>
+</html>

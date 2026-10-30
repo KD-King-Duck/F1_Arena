@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     raceFilter.addEventListener("change", () => {
       raceRows.forEach((row) => {
         const sprint = row.dataset.sprint === "yes";
-        row.hidden = raceFilter.value === "sprint" ? !sprint
-          : raceFilter.value === "grand-prix" ? sprint
-          : false;
+        row.hidden = raceFilter.value === "sprint" ? !sprint :
+          raceFilter.value === "grand-prix" ? sprint :
+          false;
       });
     });
   }
