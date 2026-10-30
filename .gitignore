@@ -1,0 +1,15 @@
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Fichiers temporaires et journaux
+*.log
+*.tmp
+*.swp
+
+# Configurations locales éventuelles
+.env
+.env.*
+!.env.example

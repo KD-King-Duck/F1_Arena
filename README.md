@@ -1,102 +1,81 @@
 # F1 Arena
 
-Site de suivi de championnat pour un jeu inventé : écuries, pilotes, calendrier, résultats et classements. La base de données est **vierge** : tout se crée depuis le site.
+Application web de suivi d'un championnat de Formule 1 fictif. Elle permet de gérer les saisons, les Grands Prix, les écuries et les pilotes, puis de saisir les résultats afin de calculer les classements.
 
-**Stack :** HTML / CSS / JavaScript (front), PHP (`api.php`), MySQL / MariaDB.
+## Fonctionnalités
 
-## Structure
+- Gestion des saisons et des Grands Prix, avec prise en charge des courses sprint.
+- Gestion des écuries (nom et couleur) et des pilotes (numéro et écurie).
+- Saisie des résultats de Grand Prix et de sprint.
+- Barème de points configurable.
+- Classements pilotes et constructeurs calculés par saison.
+
+## Technologies
+
+- HTML, CSS et JavaScript côté client.
+- PHP 8+ pour l'API (`api.php`).
+- MySQL ou MariaDB pour les données.
+
+## Démarrage rapide avec XAMPP
+
+1. Installe [XAMPP](https://www.apachefriends.org/) avec PHP 8 ou une version plus récente.
+2. Copie le dossier du projet dans `C:\xampp\htdocs\F1_Arena`.
+3. Démarre **Apache** et **MySQL** depuis le panneau de contrôle XAMPP.
+4. Ouvre [phpMyAdmin](http://localhost/phpmyadmin), puis importe `F1_BDD.sql`.
+5. Vérifie les paramètres de connexion dans `config.php` si ton instance MySQL n'utilise pas les valeurs par défaut.
+6. Ouvre <http://localhost/F1_Arena/index.html>.
+
+> N'ouvre pas les fichiers HTML directement avec `file://` : l'API PHP doit être servie par Apache.
+
+### Connexion à la base de données
+
+La configuration XAMPP par défaut est déjà renseignée :
+
+```php
+const DB_HOST = 'localhost';
+const DB_NAME = 'f1_arena';
+const DB_USER = 'root';
+const DB_PASS = '';
+```
+
+Modifie uniquement `DB_PASS` (et les autres constantes si nécessaire) dans `config.php`.
+
+## Première utilisation
+
+La base initiale contient une saison et le barème F1 standard, mais aucune écurie, aucun pilote, aucun Grand Prix ni résultat.
+
+1. Crée ou renomme une saison dans **Calendrier**.
+2. Ajoute les Grands Prix.
+3. Ajoute les écuries, puis les pilotes.
+4. Ajuste le barème dans **Résultats** si besoin.
+5. Saisis les résultats et consulte les classements.
+
+## Structure du projet
 
 ```text
-F1_Arena/
-├── index.html        Accueil (prochain GP, tops)
-├── calendar.html     Saisons et Grands Prix
-├── results.html      Saisie des résultats + barème de points
-├── standings.html    Classements pilotes et écuries
-├── drivers.html      Gestion des pilotes
-├── teams.html        Gestion des écuries
-├── css/style.css     Styles (DA Arena)
-├── js/               Un fichier JS par page + common.js
-├── api.php           API entre le site et la base
-├── config.php        Identifiants MySQL
-├── F1_BDD.sql        Création de la base (vide)
+.
+├── asset/                 Images de l'identité visuelle
+├── css/style.css          Feuille de styles
+├── js/                    Scripts communs et scripts par page
+├── api.php                API PHP / MySQL
+├── config.php             Configuration de la base de données
+├── F1_BDD.sql             Schéma et données initiales
+├── Algo_Vpython.py        Prototype Python de l'algorithme métier
+├── *.html                 Pages de l'application
 └── README.md
 ```
 
-## 1. Installer XAMPP
+## Données et réinitialisation
 
-1. Télécharge XAMPP sur https://www.apachefriends.org (version avec PHP 8.x).
-2. Installe-le (dossier par défaut : `C:\xampp`).
-3. Ouvre le **XAMPP Control Panel**.
+L'import de `F1_BDD.sql` est prévu pour une base neuve. Ne le relance pas sur une base déjà initialisée : les tables existantes sont conservées et les insertions initiales peuvent échouer car certaines valeurs sont uniques.
 
-## 2. Placer le projet
+Pour repartir de zéro, supprime d'abord la base `f1_arena` dans phpMyAdmin, puis importe à nouveau le fichier SQL. Cette opération efface définitivement les données du championnat.
 
-Copie le dossier `F1_Arena` dans :
+## Dépannage
 
-```text
-C:\xampp\htdocs\F1_Arena
-```
-
-Les fichiers (`index.html`, `api.php`, etc.) doivent se trouver directement dans ce dossier, pas dans un sous-dossier en plus.
-
-## 3. Démarrer les services
-
-Dans le XAMPP Control Panel, clique sur **Start** pour :
-
-- **Apache** (serveur web et PHP)
-- **MySQL** (base de données)
-
-Les deux doivent passer au vert. Si Apache ne démarre pas, le port 80 est probablement pris (Skype, IIS, autre serveur) : ferme le programme concerné ou change le port dans `Config > httpd.conf`.
-
-## 4. Créer la base de données
-
-1. Ouvre http://localhost/phpmyadmin
-2. Clique sur l'onglet **Importer**.
-3. Choisis le fichier `F1_BDD.sql`, puis clique sur **Importer** en bas de page.
-
-La base `f1_arena` est créée avec toutes ses tables, sans aucune donnée.
-
-> **Attention :** `F1_BDD.sql` commence par `DROP DATABASE IF EXISTS f1_arena`. Le réimporter **efface toutes tes données**. Ne le refais que pour repartir de zéro.
-
-## 5. Vérifier la connexion
-
-Par défaut, `config.php` utilise les réglages XAMPP :
-
-```php
-const DB_HOST='localhost', DB_NAME='f1_arena', DB_USER='root', DB_PASS='';
-```
-
-Si tu as mis un mot de passe à MySQL, modifie `DB_PASS`.
-
-## 6. Ouvrir le site
-
-http://localhost/F1_Arena/index.html
-
-N'ouvre pas les fichiers en double-cliquant dessus (`file://...`) : le PHP ne fonctionnerait pas.
-
-## 7. Premiers pas (dans cet ordre)
-
-1. **Calendrier** : crée une saison, puis ajoute tes Grands Prix (case « Course sprint » si besoin).
-2. **Écuries** : crée tes écuries (nom + couleur).
-3. **Pilotes** : crée tes pilotes (nom, numéro, écurie).
-4. **Résultats** : dans la section « Barème de points », renseigne les points par position et enregistre. Tant que le barème est vide, chaque position rapporte 0 point.
-5. **Résultats** : choisis un GP, saisis l'ordre d'arrivée et enregistre.
-6. **Classement** : consulte les classements pilotes et écuries.
-
-Le sélecteur de saison en haut à droite change la saison affichée sur toutes les pages.
-
-## Bon à savoir
-
-- L'écurie d'un pilote est enregistrée avec chaque résultat : un changement d'écurie en cours de saison ne modifie pas les points déjà marqués.
-- Supprimer un pilote, un GP ou une saison supprime aussi les résultats liés.
-- Les polices (Exo 2, Inter) viennent de Google Fonts : sans internet, le site utilise des polices de secours.
-
-## Problèmes fréquents
-
-| Message ou symptôme | Solution |
-|---|---|
-| « API injoignable… » | Apache ou MySQL n'est pas démarré, ou le site est ouvert en `file://`. |
-| Erreur `Unknown database 'f1_arena'` | Importe `F1_BDD.sql` (étape 4). |
-| Erreur `Access denied for user` | Vérifie `DB_USER` et `DB_PASS` dans `config.php`. |
-| Page blanche ou code PHP affiché | Le dossier n'est pas dans `htdocs`, ou Apache n'est pas lancé. |
-| « Valeur déjà utilisée (doublon) » | Un nom d'écurie, un numéro de pilote ou un nom de saison existe déjà. |
-| `#1050 La table existe déjà` à l'import | Utilise la version de `F1_BDD.sql` fournie ici, qui supprime et recrée la base. |
+| Symptôme | Piste de résolution |
+| --- | --- |
+| « API injoignable » | Vérifie qu'Apache et MySQL sont démarrés et que l'URL commence par `http://localhost/`. |
+| `Unknown database 'f1_arena'` | Importe `F1_BDD.sql` dans phpMyAdmin. |
+| `Access denied for user` | Vérifie les constantes dans `config.php`. |
+| Une valeur est déjà utilisée | Les noms d'écuries, noms de saisons et numéros de pilotes doivent être uniques. |
