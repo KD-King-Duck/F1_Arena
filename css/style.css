@@ -333,10 +333,11 @@ td b{
 }
 .pos-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px;
   margin:16px 0
 }
+@media(max-width:620px){.pos-grid{grid-template-columns:1fr}}
 .pos{
   display:flex;
   flex-direction:row!important;

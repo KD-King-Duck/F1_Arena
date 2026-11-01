@@ -3,7 +3,17 @@ require 'config.php'; header('Content-Type: application/json');
 $T=['championships'=>['name'],'seasons'=>['championship_id','name'],'teams'=>['championship_id','name','color'],'drivers'=>['championship_id','name'],'season_teams'=>['season_id','team_id'],'season_drivers'=>['season_id','driver_id','team_id','number'],'races'=>['season_id','name','circuit','race_date','has_sprint']];
 try {
  $p=db(); $m=$_SERVER['REQUEST_METHOD']; $t=$_GET['t']??'';
- if($m==='GET'){ $o=[]; foreach(['championships','seasons','teams','drivers','season_teams','season_drivers','races','results','fastest_laps','scoring'] as $x)$o[$x]=$p->query("SELECT * FROM $x ORDER BY 1")->fetchAll(); echo json_encode($o); exit; }
+ if($m==='GET'){
+  if($t==='integrity'){
+   $sql="SELECT
+    (SELECT COUNT(*) FROM races) AS races,
+    (SELECT COUNT(*) FROM results) AS results,
+    (SELECT COUNT(*) FROM fastest_laps) AS fastest_laps,
+    (SELECT COUNT(*) FROM (SELECT 1 FROM races GROUP BY season_id,name,race_date HAVING COUNT(*)>1) AS d) AS duplicate_calendar_groups";
+   echo json_encode($p->query($sql)->fetch()); exit;
+  }
+  $o=[]; foreach(['championships','seasons','teams','drivers','season_teams','season_drivers','races','results','fastest_laps','scoring'] as $x)$o[$x]=$p->query("SELECT * FROM $x ORDER BY 1")->fetchAll(); echo json_encode($o); exit;
+ }
  if($m==='DELETE'){if(!isset($T[$t]))throw new Exception('Table inconnue');$p->prepare("DELETE FROM $t WHERE id=?")->execute([$_GET['id']]);echo '{"ok":1}';exit;}
  $b=json_decode(file_get_contents('php://input'),true);$t=$b['t']??'';
  if($t==='championships'&&empty($b['id'])){$p->beginTransaction();$p->prepare('INSERT INTO championships(name) VALUES(?)')->execute([$b['data']['name']]);$id=$p->lastInsertId();$s=$p->prepare('INSERT INTO scoring(championship_id,kind,position,points) VALUES(?,?,?,?)');foreach([[1,25],[2,18],[3,15],[4,12],[5,10],[6,8],[7,6],[8,4],[9,2],[10,1]] as $r)$s->execute([$id,'gp',$r[0],$r[1]]);foreach([[1,8],[2,7],[3,6],[4,5],[5,4],[6,3],[7,2],[8,1]] as $r)$s->execute([$id,'sprint',$r[0],$r[1]]);$p->commit();echo json_encode(['ok'=>1,'id'=>$id]);exit;}
