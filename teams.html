@@ -1,1 +1,61 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Écuries – Arena</title><link rel="stylesheet" href="css/style.css"></head><body><header id="nav" class="top"></header><main><h1>Écuries</h1><p class="mut">Les écuries sont conservées dans les statistiques du championnat, même si elles ne disputent qu’une saison.</p><form class="panel" id="f"><input type="hidden" name="rid"><input type="hidden" name="teamid"><label>Écurie existante<select name="existing"><option value="">— nouvelle écurie —</option></select></label><label>Nom de l’écurie<input name="nm" required maxlength="80"></label><label>Couleur<input type="color" name="col" value="#ff1801"></label><button>Enregistrer / engager</button><button type="reset">Annuler</button></form><div id="list"></div></main><script src="js/common.js"></script><script src="js/teams.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Écuries – Arena</title>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <!-- Conteneur de navigation destiné au JavaScript. -->
+    <header id="nav" class="top"></header>
+
+    <main>
+      <h1>Écuries</h1>
+
+      <!-- Les statistiques du championnat conservent l'historique des écuries. -->
+      <p class="mut">
+        Les écuries sont conservées dans les statistiques du championnat,
+        même si elles ne disputent qu’une saison.
+      </p>
+
+      <!-- Création d'une écurie ou engagement d'une écurie existante. -->
+      <form class="panel" id="f">
+        <!-- Identifiants techniques utilisés par le JavaScript. -->
+        <input type="hidden" name="rid">
+        <input type="hidden" name="teamid">
+
+        <label>
+          Écurie existante
+          <select name="existing">
+            <option value="">— nouvelle écurie —</option>
+          </select>
+        </label>
+
+        <label>
+          Nom de l’écurie
+          <input name="nm" required maxlength="80">
+        </label>
+
+        <!-- Sélecteur de couleur avec une valeur initiale rouge. -->
+        <label>
+          Couleur
+          <input type="color" name="col" value="#ff1801">
+        </label>
+
+        <button>Enregistrer / engager</button>
+        <button type="reset">Annuler</button>
+      </form>
+
+      <!-- Emplacement destiné à la liste des écuries. -->
+      <div id="list"></div>
+    </main>
+
+    <!-- Conserver l'ordre de chargement des scripts. -->
+    <script src="js/common.js"></script>
+    <script src="js/teams.js"></script>
+  </body>
+</html>

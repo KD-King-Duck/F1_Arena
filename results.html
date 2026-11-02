@@ -1,1 +1,72 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Résultats – Arena</title><link rel="stylesheet" href="css/style.css"></head><body><header id="nav" class="top"></header><main><h1>Résultats</h1><div class="panel" id="entry"><div style="display:flex;gap:12px;flex-wrap:wrap"><label>Grand Prix<br><select id="race"></select></label><label>Course<br><select id="kind"></select></label></div><p class="mut" id="flHint">Coche le meilleur tour : le point est attribué seulement si le pilote finit dans le top 10.</p><div class="pos-grid" id="rows"></div><button id="save">Enregistrer le classement</button></div><section class="block"><h2>Barème de points du championnat</h2><div class="panel"><div class="wrap"><table id="scoring"></table></div><p class="cta" style="margin-top:16px"><button class="ghost" id="addPos">Ajouter une position</button><button id="saveScoring">Enregistrer le barème</button></p></div></section></main><script src="js/common.js"></script><script src="js/results.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Résultats – Arena</title>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <!-- Conteneur de navigation destiné au JavaScript. -->
+    <header id="nav" class="top"></header>
+
+    <main>
+      <h1>Résultats</h1>
+
+      <!-- Saisie du classement pour le Grand Prix et la course sélectionnés. -->
+      <div class="panel" id="entry">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <label>
+            Grand Prix<br>
+            <select id="race"></select>
+          </label>
+
+          <label>
+            Course<br>
+            <select id="kind"></select>
+          </label>
+        </div>
+
+        <!-- Rappel de la règle affichée pour le point du meilleur tour. -->
+        <p class="mut" id="flHint">
+          Coche le meilleur tour : le point est attribué seulement si le
+          pilote finit dans le top 10.
+        </p>
+
+        <!-- Emplacement destiné aux lignes de saisie du classement. -->
+        <div class="pos-grid" id="rows"></div>
+
+        <button id="save">Enregistrer le classement</button>
+      </div>
+
+      <!-- Configuration des points attribués à chaque position. -->
+      <section class="block">
+        <h2>Barème de points du championnat</h2>
+
+        <div class="panel">
+          <div class="wrap">
+            <!-- Tableau destiné à être rempli par le JavaScript. -->
+            <table id="scoring"></table>
+          </div>
+
+          <p class="cta" style="margin-top:16px">
+            <button class="ghost" id="addPos">
+              Ajouter une position
+            </button>
+
+            <button id="saveScoring">
+              Enregistrer le barème
+            </button>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Conserver l'ordre de chargement des scripts. -->
+    <script src="js/common.js"></script>
+    <script src="js/results.js"></script>
+  </body>
+</html>

@@ -2,53 +2,58 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>
-      Accueil – Arena
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Accueil – Arena</title>
+
     <link rel="stylesheet" href="css/style.css">
   </head>
+
   <body>
-    <header id="nav" class="top">
-    </header>
+    <!-- Conteneur de navigation destiné au JavaScript. -->
+    <header id="nav" class="top"></header>
+
     <main>
+      <!-- Présentation du championnat et accès aux actions principales. -->
       <section class="hero">
         <h1>
-          F1
-          <br>
+          F1<br>
           Arena
         </h1>
+
         <p>
-          Suis la progression de ton championnat : écuries, pilotes, résultats et classements, mis à jour après chaque course.
+          Suis la progression de ton championnat : écuries, pilotes,
+          résultats et classements, mis à jour après chaque course.
         </p>
+
         <div class="cta">
-          <a class="btn" href="results.html">
-            Saisir un résultat
-          </a>
-          <a class="btn ghost" href="calendar.html">
-            Voir le calendrier
-          </a>
+          <a class="btn" href="results.html">Saisir un résultat</a>
+          <a class="btn ghost" href="calendar.html">Voir le calendrier</a>
         </div>
       </section>
+
+      <!-- Tableau de bord : prochaine course et meilleurs classements. -->
       <section class="grid3">
-        <div class="panel" id="next">
-        </div>
+        <!-- Emplacement réservé aux informations de la prochaine course. -->
+        <div class="panel" id="next"></div>
+
         <div class="panel">
-          <h2>
-            Top pilotes
-          </h2>
-          <ol class="mini" id="topD">
-          </ol>
+          <h2>Top pilotes</h2>
+
+          <!-- Liste destinée à être remplie par le JavaScript. -->
+          <ol class="mini" id="topD"></ol>
         </div>
+
         <div class="panel">
-          <h2>
-            Top écuries
-          </h2>
-          <ol class="mini" id="topT">
-          </ol>
+          <h2>Top écuries</h2>
+
+          <!-- Liste destinée à être remplie par le JavaScript. -->
+          <ol class="mini" id="topT"></ol>
         </div>
       </section>
     </main>
+
+    <!-- Conserver cet ordre pour les éventuelles dépendances entre scripts. -->
     <script src="js/common.js"></script>
     <script src="js/index.js"></script>
   </body>

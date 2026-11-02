@@ -1,1 +1,52 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Classement – Arena</title><link rel="stylesheet" href="css/style.css"></head><body><header id="nav" class="top"></header><main><h1>Classement</h1><div class="tabs"><button class="on" data-t="drivers">Pilotes · saison</button><button data-t="teams">Écuries · saison</button><button data-t="globalDrivers">Pilotes · championnat</button><button data-t="globalTeams">Écuries · championnat</button></div><div id="titleInfo"></div><div class="panel wrap" id="tbl"></div></main><script src="js/common.js"></script><script src="js/standings.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Classement – Arena</title>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <!-- Conteneur de navigation destiné au JavaScript. -->
+    <header id="nav" class="top"></header>
+
+    <main>
+      <h1>Classement</h1>
+
+      <!--
+        Sélection du classement à afficher.
+        Les attributs data-t identifient chaque vue pour le JavaScript.
+      -->
+      <div class="tabs">
+        <button class="on" data-t="drivers">
+          Pilotes · saison
+        </button>
+
+        <button data-t="teams">
+          Écuries · saison
+        </button>
+
+        <button data-t="globalDrivers">
+          Pilotes · championnat
+        </button>
+
+        <button data-t="globalTeams">
+          Écuries · championnat
+        </button>
+      </div>
+
+      <!-- Emplacement destiné aux informations du classement sélectionné. -->
+      <div id="titleInfo"></div>
+
+      <!-- Conteneur destiné au tableau de classement. -->
+      <div class="panel wrap" id="tbl"></div>
+    </main>
+
+    <!-- Conserver l'ordre de chargement des scripts. -->
+    <script src="js/common.js"></script>
+    <script src="js/standings.js"></script>
+  </body>
+</html>

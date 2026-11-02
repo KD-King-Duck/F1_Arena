@@ -1,2 +1,6 @@
-/* Les données de démonstration sont volontairement écrites dans les pages HTML.
-   Ce fichier est conservé comme emplacement prévu pour une future couche de données. */
+/**
+ * Emplacement réservé à une future couche de gestion des données.
+ *
+ * Pour le moment, les données de démonstration sont définies directement
+ * dans les pages HTML. Ce fichier ne contient donc aucune logique exécutée.
+ */

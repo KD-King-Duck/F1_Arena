@@ -1,1 +1,66 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pilotes – Arena</title><link rel="stylesheet" href="css/style.css"></head><body><header id="nav" class="top"></header><main><h1>Pilotes</h1><p class="mut">Les pilotes sont des entités du championnat ; leur numéro et leur écurie sont propres à la saison.</p><form class="panel" id="f"><input type="hidden" name="rid"><input type="hidden" name="driverid"><label>Pilote existant<select name="existing"><option value="">— nouveau pilote —</option></select></label><label>Nom du pilote<input name="nm" required maxlength="80"></label><label>Numéro de cette saison<input name="num" type="number" min="0" max="999"></label><label>Écurie de cette saison<select name="team"></select></label><button>Enregistrer / engager</button><button type="reset">Annuler</button></form><div id="list"></div></main><script src="js/common.js"></script><script src="js/drivers.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pilotes – Arena</title>
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+    <!-- Conteneur de navigation destiné au JavaScript. -->
+    <header id="nav" class="top"></header>
+
+    <main>
+      <h1>Pilotes</h1>
+
+      <!-- Distinction entre le pilote et ses informations propres à la saison. -->
+      <p class="mut">
+        Les pilotes sont des entités du championnat ; leur numéro et leur
+        écurie sont propres à la saison.
+      </p>
+
+      <!-- Création d'un pilote ou engagement d'un pilote existant. -->
+      <form class="panel" id="f">
+        <!-- Identifiants techniques utilisés par le JavaScript. -->
+        <input type="hidden" name="rid">
+        <input type="hidden" name="driverid">
+
+        <label>
+          Pilote existant
+          <select name="existing">
+            <option value="">— nouveau pilote —</option>
+          </select>
+        </label>
+
+        <label>
+          Nom du pilote
+          <input name="nm" required maxlength="80">
+        </label>
+
+        <!-- Le numéro et l'écurie concernent uniquement la saison. -->
+        <label>
+          Numéro de cette saison
+          <input name="num" type="number" min="0" max="999">
+        </label>
+
+        <label>
+          Écurie de cette saison
+          <select name="team"></select>
+        </label>
+
+        <button>Enregistrer / engager</button>
+        <button type="reset">Annuler</button>
+      </form>
+
+      <!-- Emplacement destiné à la liste des pilotes. -->
+      <div id="list"></div>
+    </main>
+
+    <!-- Conserver l'ordre de chargement des scripts. -->
+    <script src="js/common.js"></script>
+    <script src="js/drivers.js"></script>
+  </body>
+</html>
